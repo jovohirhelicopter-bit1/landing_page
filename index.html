@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uz" class="cyber-theme-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="NEURA-CORE v5.0 - Monolithic Web Component AI Agent Platform">
+  <meta name="keywords" content="AI, Web Components, Shadow DOM, Stream, Cyberpunk, Glassmorphism">
+  <meta name="theme-color" content="#030712">
+  <title>NEURA-CORE v5.0 - Enterprise Monolithic Neural Agent</title>
+
+  <!-- External Stylesheet Reference -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Preload Fonts & Graphic Engines -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-body-container" id="neura-app-body">
+
+  <!-- ========================================================================== -->
+  <!-- 1. ADVANCED SVG VECTOR FILTERS FOR FUTURISTIC UI MATRIX EFFECTS           -->
+  <!-- ========================================================================== -->
+  <svg class="svg-filter-registry" style="display: none; aria-hidden: true;">
+    <defs>
+      <!-- Glassmorphism Surface Blur & Distortion Filter -->
+      <filter id="cyber-glass-blur" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+
+      <!-- Neon Glow Filter Engine -->
+      <filter id="neon-glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      <!-- High Intensity Purple Glow -->
+      <filter id="neon-glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      <!-- Holographic Glitch Distortion Filter -->
+      <filter id="holo-glitch">
+        <feColorMatrix type="matrix" values="
+          1 0 0 0 0
+          0 0 0 0 0
+          0 0 1 0 0
+          0 0 0 1 0" result="red_blue" />
+        <feOffset dx="2" dy="0" in="red_blue" result="offset_red" />
+        <feBlend mode="screen" in="SourceGraphic" in2="offset_red"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Background Scanline Matrix Mask Layer -->
+  <div class="cyber-scanline-overlay" aria-hidden="true"></div>
+
+  <!-- Ambient Holographic Mesh Gradients -->
+  <div class="ambient-mesh-background" aria-hidden="true">
+    <div class="mesh-orb orb-primary"></div>
+    <div class="mesh-orb orb-secondary"></div>
+    <div class="mesh-orb orb-tertiary"></div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- 2. HARDWARE-ACCELERATED BACKGROUND CANVAS (NEURAL NODE NETWORK)            -->
+  <!-- ========================================================================== -->
+  <canvas id="cyber-background-canvas" class="neural-canvas-layer" aria-hidden="true"></canvas>
+
+  <!-- System Notification Toast Engine -->
+  <div id="system-toast-container" class="toast-wrapper" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ========================================================================== -->
+  <!-- 3. MICRO-FRONTEND WEB COMPONENTS CONTAINER ROOT                           -->
+  <!-- ========================================================================== -->
+  <main id="app-root" class="main-application-viewport" role="main">
+    
+    <!-- Custom Shadow DOM Web Component Host -->
+    <ai-agent-interface id="ai-core-interface" data-version="5.0.0" data-environment="production">
+      <!-- Fallback Content for Non-JS / Screen Reader Engines -->
+      <div class="a11y-fallback-container">
+        <h1>NEURA-CORE AI Interface Loading...</h1>
+        <p>Iltimos, ushbu interaktiv AI platformadan foydalanish uchun JavaScript-ni yoqing.</p>
+      </div>
+    </ai-agent-interface>
+
+  </main>
+
+  <!-- Modal Dialog System for System Diagnostics -->
+  <dialog id="system-diagnostics-modal" class="cyber-modal-container">
+    <div class="modal-content-glass">
+      <header class="modal-header">
+        <h3 id="diag-title">SYSTEM DIAGNOSTICS & TELEMETRY</h3>
+        <button id="close-diag-btn" class="modal-close-btn" aria-label="Yopish">&times;</button>
+      </header>
+      <div class="modal-body">
+        <div class="telemetry-grid">
+          <div class="telemetry-card">
+            <span class="t-label">Memory Usage</span>
+            <span class="t-value" id="diag-mem">0 MB</span>
+          </div>
+          <div class="telemetry-card">
+            <span class="t-label">Render Pipeline</span>
+            <span class="t-value" id="diag-pipeline">GPU Accelerated</span>
+          </div>
+          <div class="telemetry-card">
+            <span class="t-label">Stream Engine State</span>
+            <span class="t-value" id="diag-stream">IDLE</span>
+          </div>
+          <div class="telemetry-card">
+            <span class="t-label">Context Stack</span>
+            <span class="t-value" id="diag-context">0 / 20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================== -->
+  <!-- 4. MONOLITHIC SCRIPT INGESTION                                            -->
+  <!-- ========================================================================== -->
+  <script src="app.js" type="module"></script>
+</body>
+</html>

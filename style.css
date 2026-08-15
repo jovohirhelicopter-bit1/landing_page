@@ -1,0 +1,393 @@
+/* ==========================================================================
+   NEURA-CORE SYSTEM DESIGN TOKENS & ADVANCED CYBERPUNK STYLESHEET
+   ========================================================================== */
+
+/* 1. GLOBAL SYSTEM VARIABLES & COLOR SCHEMES */
+:root {
+  /* Color Spectrum */
+  --bg-primary: #030712;
+  --bg-secondary: #0b132b;
+  --bg-tertiary: #1c2541;
+  --bg-overlay: rgba(3, 7, 18, 0.85);
+  
+  --color-neon-cyan: #00f2fe;
+  --color-neon-blue: #4facfe;
+  --color-neon-purple: #7000ff;
+  --color-neon-pink: #ff007f;
+  --color-neon-green: #00ff88;
+  --color-warning: #ffb703;
+  --color-danger: #ff0055;
+
+  --text-main: #f8fafc;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --text-glow: #e0f7fa;
+
+  /* Glassmorphism 2.0 Tokens */
+  --glass-bg: rgba(11, 19, 43, 0.65);
+  --glass-bg-hover: rgba(28, 37, 65, 0.75);
+  --glass-border: rgba(0, 242, 254, 0.15);
+  --glass-border-active: rgba(0, 242, 254, 0.5);
+  --glass-blur: blur(25px);
+
+  /* Shadow & Neumorphism Glow Systems */
+  --shadow-neon-cyan: 0 0 25px rgba(0, 242, 254, 0.25);
+  --shadow-neon-purple: 0 0 35px rgba(112, 0, 255, 0.35);
+  --shadow-deep-box: 0 20px 50px rgba(0, 0, 0, 0.8);
+  --shadow-inner-glow: inset 0 0 15px rgba(0, 242, 254, 0.1);
+
+  /* Layout & Typography */
+  --font-cyber: 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 2. BASE DOCUMENT RESET & BODY STYLES */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html.cyber-theme-root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+body.cyber-body-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* 3. HARDWARE-ACCELERATED BACKGROUND LAYERS */
+.neural-canvas-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  filter: contrast(120%) brightness(90%);
+}
+
+.cyber-scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  opacity: 0.6;
+}
+
+/* Ambient Holographic Mesh Mesh Orbs */
+.ambient-mesh-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  will-change: transform;
+  animation: orbFloat 20s infinite ease-in-out alternate;
+}
+
+.orb-primary {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--color-neon-cyan), transparent);
+}
+
+.orb-secondary {
+  bottom: -20%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, var(--color-neon-purple), transparent);
+  animation-delay: -5s;
+}
+
+.orb-tertiary {
+  top: 40%;
+  left: 30%;
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, var(--color-neon-pink), transparent);
+  animation-delay: -10s;
+}
+
+/* 4. VIEWPORT & WEB COMPONENT HOST STRUCTURE */
+.main-application-viewport {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+ai-agent-interface {
+  width: 100%;
+  max-width: 1450px;
+  height: 92vh;
+  display: block;
+}
+
+.a11y-fallback-container {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-neon-cyan);
+  font-family: var(--font-cyber);
+}
+
+/* 5. TOAST NOTIFICATION ENGINE STYLES */
+.toast-wrapper {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.cyber-toast {
+  pointer-events: auto;
+  min-width: 300px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-deep-box);
+  color: var(--text-main);
+  font-family: var(--font-cyber);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: toastIn 0.35s var(--transition-bounce) forwards;
+  transition: all 0.3s ease;
+}
+
+.cyber-toast.info { border-left: 4px solid var(--color-neon-cyan); }
+.cyber-toast.success { border-left: 4px solid var(--color-neon-green); }
+.cyber-toast.warning { border-left: 4px solid var(--color-warning); }
+.cyber-toast.danger { border-left: 4px solid var(--color-danger); }
+
+/* 6. MODAL SYSTEM STYLES */
+.cyber-modal-container {
+  margin: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 600px;
+  width: 90vw;
+  box-shadow: var(--shadow-deep-box);
+}
+
+.cyber-modal-container::backdrop {
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.modal-content-glass {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border-active);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-neon-cyan);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  font-family: var(--font-cyber);
+  color: var(--color-neon-cyan);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-danger);
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.telemetry-card {
+  background: rgba(3, 7, 18, 0.5);
+  border: 1px solid var(--glass-border);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.t-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-cyber);
+}
+
+.t-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-neon-cyan);
+  font-family: var(--font-cyber);
+}
+
+/* 7. SCROLLBAR CUSTOMIZATION */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(3, 7, 18, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 242, 254, 0.25);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-cyan);
+  box-shadow: 0 0 10px var(--color-neon-cyan);
+}
+
+/* 8. HIGH-CONTRAST ACCESSIBILITY OUTLINE */
+:focus-visible {
+  outline: 2px solid var(--color-neon-cyan) !important;
+  outline-offset: 3px !important;
+}
+
+/* 9. KEYFRAME ANIMATIONS DECK */
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8%, 10%) scale(1.1); }
+  100% { transform: translate(-5%, -8%) scale(0.95); }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2), inset 0 0 10px rgba(0, 242, 254, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(0, 242, 254, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.3);
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes streamIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glitchFlicker {
+  0% { opacity: 0.98; transform: skewX(0deg); }
+  5% { opacity: 0.7; transform: skewX(1deg); }
+  10% { opacity: 0.95; transform: skewX(-1deg); }
+  15% { opacity: 1; transform: skewX(0deg); }
+  100% { opacity: 1; transform: skewX(0deg); }
+}
+
+/* 10. MEDIA QUERIES & RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .main-application-viewport {
+    padding: 12px;
+  }
+  ai-agent-interface {
+    height: 96vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+  .cyber-toast {
+    min-width: 260px;
+  }
+}
